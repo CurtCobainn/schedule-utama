@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUZURAN — University Class Schedule</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+JP:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- ====================================================================
+         LEFT SIDEBAR (Inspired by Sherwood Reference Image 1 + Crows Zero)
+         ==================================================================== -->
+    <aside class="sidebar" id="sidebar">
+      <!-- Mobile Hamburger Toggle -->
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Vintage Plaque Logo Area (Matches Sherwood wooden sign in Ref 1) -->
+      <div class="sidebar-logo-plaque">
+        <div class="plaque-inner">
+          <span class="plaque-welcome">Welcome to</span>
+          <h1 class="sidebar-logo">鈴蘭 <span>SUZURAN</span></h1>
+          <p class="sidebar-subtitle">UNIVERSITY CLASS SYSTEM</p>
+        </div>
+      </div>
+
+      <!-- Navigation Menu (7 items matching Ref 1 pill layout) -->
+      <nav class="sidebar-nav" id="sidebarNav">
+        <ul>
+          <li>
+            <a href="#home" class="active" data-section="home">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="#weekly" data-section="weekly">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>Weekly Schedule</span>
+            </a>
+          </li>
+          <li>
+            <a href="#calendar" data-section="calendar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              <span>Calendar</span>
+            </a>
+          </li>
+          <li>
+            <a href="#assignments" data-section="assignments">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                <path d="M9 12h6"></path>
+                <path d="M9 16h6"></path>
+              </svg>
+              <span>Assignments</span>
+            </a>
+          </li>
+          <li>
+            <a href="#notes" data-section="notes">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+              </svg>
+              <span>Notes</span>
+            </a>
+          </li>
+          <li>
+            <a href="#characters" data-section="characters">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span>Characters</span>
+            </a>
+          </li>
+          <li>
+            <a href="#settings" data-section="settings">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Harumichi Bouya Main Character Illustration (Ref Image 2 integrated above tip box like Ref 1) -->
+      <div class="sidebar-character-showcase">
+        <div class="character-frame" id="sidebarBouyaTrigger" title="Click to inspect Harumichi Bouya">
+          <img src="assets/bouya-main.png" alt="Harumichi Bouya — Crows Vol. 25" class="character-img" id="bouyaPortrait">
+          <div class="character-frame-caption">
+            <span class="character-name">坊屋春道</span>
+            <span class="character-title">Harumichi Bouya</span>
+          </div>
+        </div>
+
+        <!-- Motivational Box (Matches 'Dagens tips' box at bottom of sidebar in Ref 1) -->
+        <div class="sidebar-tip-box">
+          <div class="tip-box-header">SUZURAN DAILY CREED</div>
+          <p class="sidebar-quote-text" id="sidebarQuote">"The strongest one is the one who stands alone."</p>
+          <div class="sidebar-date" id="sidebarDate">Thursday, Nov 5</div>
+        </div>
+
+        <!-- Decorative Collectible Chibi Stickers at Bottom of Sidebar -->
+        <div class="sidebar-chibi" aria-label="Decorative Chibi Stickers">
+          <img src="assets/chibi-character-01.png" alt="Chibi Bouya" class="sidebar-chibi-sticker" data-char-id="bouya" title="Harumichi Bouya">
+          <img src="assets/chibi-character-02.png" alt="Chibi Rindaman" class="sidebar-chibi-sticker" data-char-id="rindaman" title="Megumi Hayashida (Rindaman)">
+          <img src="assets/chibi-character-03.png" alt="Chibi Bouya Yellow Sukajan" class="sidebar-chibi-sticker" data-char-id="zetton" title="Bouya (Crows × WORST)">
+        </div>
+      </div>
+    </aside>
+
+    <!-- Mobile Backdrop Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ====================================================================
+         MAIN CONTENT AREA (Right side matching Reference Image 1)
+         ==================================================================== -->
+    <main class="main-content" id="mainContent">
+      <!-- Illustrated Manga Atmosphere Banner Backdrop (Reference Image 3) -->
+      <div class="hero-atmosphere-backdrop" aria-hidden="true"></div>
+      <!-- Interactive Manga Page-Turn Transition Indicator -->
+      <div class="section-transition-banner" id="sectionTransitionBanner" aria-hidden="true">
+        <span class="transition-crow">鴉</span>
+        <span class="transition-label" id="transitionLabel">SUZURAN</span>
+      </div>
+
+
+      <!-- Main Header (Matches Ref 1 top header + right status card & circular character portrait) -->
+      <header class="main-header">
+        <div class="header-left">
+          <div class="welcome-eyebrow">
+            <span class="crows-crest">鴉</span> Crows × Worst • Suzuran University
+          </div>
+          <h2 class="welcome-text">Welcome Back, <span class="accent">Suzuran</span>.</h2>
+          <p class="welcome-subtitle">Another day. Another class. Stay sharp.</p>
+        </div>
+
+        <div class="header-right">
+          <button class="search-btn" id="searchBtn" aria-label="Search Schedule, Assignments & Notes" title="Search (Ctrl+K)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span class="search-btn-label">Search</span>
+            <kbd class="search-kbd">Ctrl+K</kbd>
+          </button>
+
+          <!-- Status Pill Card (Matches top-right date/season/time card in Ref 1) -->
+          <div class="header-status-pill">
+            <div class="status-pill-row">
+              <span class="status-pill-icon">📅</span>
+              <span class="header-date" id="headerDate">Thursday, Nov 5, 2026</span>
+            </div>
+            <div class="status-pill-row">
+              <span class="status-pill-icon">鴉</span>
+              <span class="header-day" id="headerDay">THURSDAY • SUZURAN TERM</span>
+            </div>
+            <div class="status-pill-row">
+              <span class="status-pill-icon">🕒</span>
+              <span class="header-clock" id="headerClock">11:42:48 AM</span>
+            </div>
+          </div>
+
+          <!-- Small Circular Character Portrait (Matches Robin Hood avatar in top-right of Ref 1) -->
+          <div class="header-avatar-badge" id="headerAvatarTrigger" title="Harumichi Bouya — P.A.D">
+            <img src="assets/bouya-poster.png" alt="Harumichi Bouya Portrait">
+          </div>
+        </div>
+      </header>
+
+      <!-- ==================================================================
+           SECTION 1: HOME DASHBOARD (Multi-Panel Composition from Ref 1)
+           ================================================================== -->
+      <div class="section section-home active" id="sectionHome">
+        <div class="dashboard-grid">
+
+          <!-- PANEL 1: TODAY'S CLASSES + NEXT CLASS OVERVIEW (Top-Left like 'Översikt' in Ref 1) -->
+          <div class="card card-todays-classes">
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">📓</span>
+                <h3>Today's Classes</h3>
+              </div>
+              <span class="card-badge" id="classCount">0</span>
+            </div>
+            <div class="card-body" id="todaysClassesList"></div>
+          </div>
+
+          <!-- PANEL 2: NEXT CLASS SPOTLIGHT -->
+          <div class="card card-next-class">
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">⚡</span>
+                <h3>Next Class</h3>
+              </div>
+              <span class="card-tag">LIVE STATUS</span>
+            </div>
+            <div class="card-body" id="nextClassContent">
+              <div class="next-class-display">
+                <div class="next-class-subject">Logika</div>
+                <div class="next-class-time">09:10 – 10:50</div>
+                <div class="next-class-room">Mektan 3.1</div>
+                <div class="next-class-countdown" id="nextClassCountdown">Starts in 2h 15m</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL 3: UPCOMING ASSIGNMENTS (Top-Right like 'Uppgifter' in Ref 1) -->
+          <div class="card card-assignments-preview">
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">📌</span>
+                <h3>Upcoming Assignments</h3>
+              </div>
+              <div class="card-header-actions">
+                <span class="card-badge" id="assignmentCount">0</span>
+                <a class="card-link" data-section="assignments" href="#assignments">View All</a>
+              </div>
+            </div>
+            <div class="card-body" id="assignmentsPreviewList"></div>
+            <div class="card-footer">
+              <button class="btn-add" id="addAssignmentBtn">+ Add Assignment</button>
+            </div>
+          </div>
+
+          <!-- PANEL 4: MONTHLY CALENDAR (With corner chibi sticker like K.K. Slider in Ref 1) -->
+          <div class="card card-calendar">
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">🗓️</span>
+                <h3 id="calMonthYear">November 2026</h3>
+              </div>
+              <div class="cal-nav-group">
+                <button class="cal-nav" id="calPrev" aria-label="Previous Month">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                </button>
+                <button class="cal-nav" id="calNext" aria-label="Next Month">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="card-body cal-card-body">
+              <div class="cal-weekdays">
+                <span>Sun</span>
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+              </div>
+              <div class="cal-grid" id="calGrid"></div>
+              <div class="cal-footer-note">
+                <div class="cal-note-pill">
+                  <strong>P.A.D Reminder:</strong> Dots mark active lecture days. Click any date to inspect its schedule.
+                </div>
+                <img src="assets/chibi-character-01.png" alt="Chibi Bouya Sticker" class="cal-corner-chibi">
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL 5: WEEKLY SCHEDULE (Center panel with Mon-Sun tabs like 'Min ö' in Ref 1) -->
+          <div class="card card-weekly-schedule">
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">🏛️</span>
+                <h3>Weekly Schedule</h3>
+              </div>
+              <button class="btn-add" id="addClassBtn">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span>Add Class</span>
+              </button>
+            </div>
+            <div class="weekday-tabs" id="weekdayTabs">
+              <button class="tab-btn active" data-day="monday">Mon</button>
+              <button class="tab-btn" data-day="tuesday">Tue</button>
+              <button class="tab-btn" data-day="wednesday">Wed</button>
+              <button class="tab-btn" data-day="thursday">Thu</button>
+              <button class="tab-btn" data-day="friday">Fri</button>
+              <button class="tab-btn" data-day="saturday">Sat</button>
+              <button class="tab-btn" data-day="sunday">Sun</button>
+            </div>
+            <div class="card-body" id="weeklyScheduleList"></div>
+          </div>
+
+          <!-- PANEL 6: STUDY STATISTICS (Matches 'Samlingar' icon stats + progress bar in Ref 1) -->
+          <div class="card card-stats">
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">📊</span>
+                <h3>Study Statistics</h3>
+              </div>
+              <span class="card-tag">WEEKLY LOAD</span>
+            </div>
+            <div class="card-body">
+              <div class="stats-icon-row">
+                <div class="stat-pill-box">
+                  <span class="stat-pill-label">Classes/Wk</span>
+                  <span class="stat-value" id="statTotalClasses">10</span>
+                </div>
+                <div class="stat-pill-box">
+                  <span class="stat-pill-label">Hours/Wk</span>
+                  <span class="stat-value" id="statHoursWeek">19.5h</span>
+                </div>
+                <div class="stat-pill-box">
+                  <span class="stat-pill-label">Peak Day</span>
+                  <span class="stat-value" id="statBusiestDay">Sat</span>
+                </div>
+                <div class="stat-pill-box">
+                  <span class="stat-pill-label">Tasks Due</span>
+                  <span class="stat-value" id="statAssignmentsDue">2</span>
+                </div>
+              </div>
+              <div class="stat-bar-container">
+                <div class="stat-bar-row">
+                  <span class="stat-bar-label">Mon</span>
+                  <div class="stat-bar"><div class="stat-bar-fill" data-day="monday" style="width: 0%;"></div></div>
+                </div>
+                <div class="stat-bar-row">
+                  <span class="stat-bar-label">Tue</span>
+                  <div class="stat-bar"><div class="stat-bar-fill" data-day="tuesday" style="width: 0%;"></div></div>
+                </div>
+                <div class="stat-bar-row">
+                  <span class="stat-bar-label">Wed</span>
+                  <div class="stat-bar"><div class="stat-bar-fill" data-day="wednesday" style="width: 0%;"></div></div>
+                </div>
+                <div class="stat-bar-row">
+                  <span class="stat-bar-label">Thu</span>
+                  <div class="stat-bar"><div class="stat-bar-fill" data-day="thursday" style="width: 0%;"></div></div>
+                </div>
+                <div class="stat-bar-row">
+                  <span class="stat-bar-label">Fri</span>
+                  <div class="stat-bar"><div class="stat-bar-fill" data-day="friday" style="width: 0%;"></div></div>
+                </div>
+                <div class="stat-bar-row">
+                  <span class="stat-bar-label">Sat</span>
+                  <div class="stat-bar"><div class="stat-bar-fill" data-day="saturday" style="width: 0%;"></div></div>
+                </div>
+                <div class="stat-bar-row">
+                  <span class="stat-bar-label">Sun</span>
+                  <div class="stat-bar"><div class="stat-bar-fill" data-day="sunday" style="width: 0%;"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL 7: CHIBI CHARACTER COLLECTION (Matches 'Invånare' character sticker grid in Ref 1) -->
+          <div class="card card-characters-preview">
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">👑</span>
+                <h3>Suzuran Roster</h3>
+              </div>
+              <a class="card-link" data-section="characters" href="#characters">View All →</a>
+            </div>
+            <div class="card-body">
+              <div class="chibi-grid" id="chibiGrid"></div>
+            </div>
+            <div class="card-footer">
+              <a class="btn-roster-banner" data-section="characters" href="#characters">
+                Explore Full Suzuran Roster &amp; Character Stickers 鴉
+              </a>
+            </div>
+          </div>
+
+          <!-- PANEL 8: PERSONAL NOTES (Bottom strip matching 'Anteckningar' in Ref 1) -->
+          <div class="card card-notes-preview">
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">✒️</span>
+                <h3>Personal Notes</h3>
+              </div>
+              <div class="card-header-actions">
+                <button class="btn-add" id="addNoteBtn">+ Add Note</button>
+                <a class="card-link" data-section="notes" href="#notes">All Notes →</a>
+              </div>
+            </div>
+            <div class="card-body notes-strip-body" id="notesPreviewList"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ==================================================================
+           SECTION 2: WEEKLY SCHEDULE FULL VIEW
+           ================================================================== -->
+      <div class="section section-weekly" id="sectionWeekly">
+        <div class="section-header-bar">
+          <div>
+            <h2>Weekly Class Schedule</h2>
+            <p class="section-desc">Official Suzuran University timetable. Click any class card to view details, edit, or delete.</p>
+          </div>
+          <button id="weeklyAddBtn" class="btn-primary">+ Add New Class</button>
+        </div>
+        <div class="weekday-tabs" id="weeklyPageTabs">
+          <button class="tab-btn active" data-day="monday">Monday</button>
+          <button class="tab-btn" data-day="tuesday">Tuesday</button>
+          <button class="tab-btn" data-day="wednesday">Wednesday</button>
+          <button class="tab-btn" data-day="thursday">Thursday</button>
+          <button class="tab-btn" data-day="friday">Friday</button>
+          <button class="tab-btn" data-day="saturday">Saturday</button>
+          <button class="tab-btn" data-day="sunday">Sunday</button>
+        </div>
+        <div id="weeklyPageList" class="weekly-full-list"></div>
+      </div>
+
+      <!-- ==================================================================
+           SECTION 3: MONTHLY CALENDAR FULL VIEW
+           ================================================================== -->
+      <div class="section section-calendar" id="sectionCalendar">
+        <div class="section-header-bar">
+          <div>
+            <h2>Academic Calendar</h2>
+            <p class="section-desc">Navigate months and select any day to inspect scheduled lectures and labs.</p>
+          </div>
+        </div>
+        <div class="card calendar-full">
+          <div class="card-header">
+            <button class="cal-nav" id="calFullPrev" aria-label="Previous Month">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <h3 id="calFullMonthYear">November 2026</h3>
+            <button class="cal-nav" id="calFullNext" aria-label="Next Month">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+          <div class="card-body" style="max-height: none;">
+            <div class="cal-weekdays">
+              <span>Sun</span>
+              <span>Mon</span>
+              <span>Tue</span>
+              <span>Wed</span>
+              <span>Thu</span>
+              <span>Fri</span>
+              <span>Sat</span>
+            </div>
+            <div class="cal-grid" id="calFullGrid"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================================================================
+           SECTION 4: ASSIGNMENTS MANAGER
+           ================================================================== -->
+      <div class="section section-assignments" id="sectionAssignments">
+        <div class="section-header-bar">
+          <div>
+            <h2>Assignments &amp; Lab Tasks</h2>
+            <p class="section-desc">Track coursework deadlines, lab reports, and completed academic battles.</p>
+          </div>
+          <div class="assignments-controls">
+            <select id="assignmentFilter">
+              <option value="all">All Tasks</option>
+              <option value="pending">Pending Only</option>
+              <option value="completed">Completed Only</option>
+            </select>
+            <button id="addAssignmentPageBtn" class="btn-primary">+ New Assignment</button>
+          </div>
+        </div>
+        <div id="assignmentsList" class="assignments-list"></div>
+      </div>
+
+      <!-- ==================================================================
+           SECTION 5: PERSONAL NOTES
+           ================================================================== -->
+      <div class="section section-notes" id="sectionNotes">
+        <div class="section-header-bar">
+          <div>
+            <h2>Field Notes &amp; Study Logs</h2>
+            <p class="section-desc">Keep lecture summaries, exam room rules, and personal reminders.</p>
+          </div>
+          <button id="addNotePageBtn" class="btn-primary">+ New Note</button>
+        </div>
+        <div id="notesList" class="notes-list"></div>
+      </div>
+
+      <!-- ==================================================================
+           SECTION 6: SUZURAN ROSTER (Dedicated Chibi Character Collection)
+           ================================================================== -->
+      <div class="section section-characters" id="sectionCharacters">
+        <div class="roster-hero-banner">
+          <div class="roster-hero-text">
+            <span class="welcome-eyebrow">CROWS × WORST COLLECTIBLE STICKER ROSTER</span>
+            <h2>SUZURAN ROSTER</h2>
+            <p class="section-desc">The legendary warriors of Suzuran, P.A.D, Housen, and The Front of Armament. Click any character sticker card to inspect their full profile and original manga illustration.</p>
+          </div>
+          <img src="assets/ref4-mini-chibis.png" alt="Crows Original Chibi Art" class="roster-hero-chibis">
+        </div>
+        <div class="characters-grid" id="charactersGrid"></div>
+      </div>
+
+      <!-- ==================================================================
+           SECTION 7: SETTINGS & DATA MANAGEMENT
+           ================================================================== -->
+      <div class="section section-settings" id="sectionSettings">
+        <h2>System Settings</h2>
+        <p class="section-desc">Manage visual theme, timetable defaults, and local storage backups.</p>
+        <div class="card settings-card">
+          <div class="card-body" style="max-height: none;">
+            <div class="settings-group">
+              <div class="setting-item">
+                <div>
+                  <label for="darkModeToggle">Vintage Charcoal Dark Mode</label>
+                  <p class="setting-hint">Switch between Warm Aged Paper and Charcoal Night ink theme.</p>
+                </div>
+                <input type="checkbox" id="darkModeToggle" class="toggle-switch">
+              </div>
+              <div class="setting-item">
+                <div>
+                  <label>Restore Official University Schedule</label>
+                  <p class="setting-hint">Reset Monday–Saturday classes to the official Suzuran timetable.</p>
+                </div>
+                <button id="resetScheduleBtn" class="btn-danger">Reset to Default</button>
+              </div>
+              <div class="setting-item">
+                <div>
+                  <label>Export Schedule &amp; Notes Backup</label>
+                  <p class="setting-hint">Download all classes, assignments, and notes as a JSON file.</p>
+                </div>
+                <button id="exportDataBtn" class="btn-secondary">Export JSON</button>
+              </div>
+              <div class="setting-item">
+                <div>
+                  <label>Import Backup Data</label>
+                  <p class="setting-hint">Restore schedule, assignments, and notes from a JSON file.</p>
+                </div>
+                <input type="file" id="importDataInput" accept=".json" style="display: none;">
+                <label for="importDataInput" class="btn-secondary">Import JSON</label>
+              </div>
+              <div class="setting-item">
+                <div>
+                  <label>Clear All Local Storage Data</label>
+                  <p class="setting-hint">Wipe all custom schedule changes, assignments, and notes.</p>
+                </div>
+                <button id="clearDataBtn" class="btn-danger">Clear Everything</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ======================================================================
+       MODALS
+       ====================================================================== -->
+
+  <!-- Class Detail Modal -->
+  <div class="modal" id="classDetailModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <span class="modal-eyebrow">SUZURAN CLASS RECORD</span>
+      <h3 class="modal-title" id="modalClassSubject">Class Subject</h3>
+      <div class="modal-body">
+        <p>Day: <span id="modalClassDay"></span></p>
+        <p>Time Slot: <span id="modalClassTime"></span></p>
+        <p>Classroom / Lab: <span id="modalClassRoom"></span></p>
+      </div>
+      <div class="modal-actions">
+        <button id="modalEditClassBtn" class="btn-primary">Edit Class</button>
+        <button id="modalDeleteClassBtn" class="btn-danger">Delete Class</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add/Edit Class Modal -->
+  <div class="modal" id="addEditClassModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <h3 class="modal-title" id="addEditClassTitle">Add New Class</h3>
+      <form id="classForm">
+        <input type="hidden" id="classFormId">
+        <div class="form-group">
+          <label for="classFormSubject">Subject Name</label>
+          <input type="text" id="classFormSubject" placeholder="e.g. Logika" required>
+        </div>
+        <div class="form-group">
+          <label for="classFormDay">Day of Week</label>
+          <select id="classFormDay" required>
+            <option value="monday">Monday</option>
+            <option value="tuesday">Tuesday</option>
+            <option value="wednesday">Wednesday</option>
+            <option value="thursday">Thursday</option>
+            <option value="friday">Friday</option>
+            <option value="saturday">Saturday</option>
+            <option value="sunday">Sunday</option>
+          </select>
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="classFormStart">Start Time</label>
+            <input type="time" id="classFormStart" required>
+          </div>
+          <div class="form-group">
+            <label for="classFormEnd">End Time</label>
+            <input type="time" id="classFormEnd" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="classFormRoom">Classroom / Lab</label>
+          <input type="text" id="classFormRoom" placeholder="e.g. Mektan 3.1" required>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" id="classFormCancel">Cancel</button>
+          <button type="submit" class="btn-primary" id="classFormSubmit">Save Class</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Assignment Modal -->
+  <div class="modal" id="assignmentModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <h3 class="modal-title" id="assignmentModalTitle">Add Assignment</h3>
+      <form id="assignmentForm">
+        <input type="hidden" id="assignmentFormId">
+        <div class="form-group">
+          <label for="assignmentFormTitle">Assignment Title</label>
+          <input type="text" id="assignmentFormTitle" placeholder="e.g. Laporan Praktikum" required>
+        </div>
+        <div class="form-group">
+          <label for="assignmentFormSubject">Related Subject</label>
+          <input type="text" id="assignmentFormSubject" placeholder="e.g. Pengenalan Pemrograman">
+        </div>
+        <div class="form-group">
+          <label for="assignmentFormDue">Due Date</label>
+          <input type="date" id="assignmentFormDue" required>
+        </div>
+        <div class="form-group">
+          <label for="assignmentFormDesc">Details / Instructions</label>
+          <textarea id="assignmentFormDesc" rows="3"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" id="assignmentFormCancel">Cancel</button>
+          <button type="submit" class="btn-primary" id="assignmentFormSubmit">Save Assignment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Note Modal -->
+  <div class="modal" id="noteModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <h3 class="modal-title" id="noteModalTitle">Add Note</h3>
+      <form id="noteForm">
+        <input type="hidden" id="noteFormId">
+        <div class="form-group">
+          <label for="noteFormTitle">Note Title</label>
+          <input type="text" id="noteFormTitle" required>
+        </div>
+        <div class="form-group">
+          <label for="noteFormContent">Note Content</label>
+          <textarea id="noteFormContent" rows="5" required></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" id="noteFormCancel">Cancel</button>
+          <button type="submit" class="btn-primary" id="noteFormSubmit">Save Note</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Character Detail Modal -->
+  <div class="modal" id="characterModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content modal-character">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <div class="char-modal-DualShowcase" id="charModalAvatar"></div>
+      <h3 id="charModalName"></h3>
+      <p class="char-modal-title" id="charModalTitle"></p>
+      <p class="char-modal-desc" id="charModalDesc"></p>
+      <div class="char-modal-stats" id="charModalStats"></div>
+    </div>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="modal" id="searchModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content modal-search">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <div class="search-input-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Search classes, rooms, assignments, notes...">
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
